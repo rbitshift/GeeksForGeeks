@@ -30,25 +30,27 @@ public class KnightTour {
 	}
 	
 	public void solve() {
-		if(move(x, y, 2) == false) {
+		if(move(x, y, 1) == false) {
 			System.out.println("Solution do not exist");
 		}
 	}
 	
 	private boolean move(int row, int col, int count) {
-		if(count == (boardsize * boardsize) +1) {
+		if(count == (boardsize * boardsize)) {
+			board[row][col] = count;
 			printboard();
+			
 			return true;
 		}
 		
 //		List<Point> allMoves = getAllMoves(row, col);
 		List<Point> allMoves = getAllMovesOptimized(row, col); //Faster solution implemented with heuristics
 		for(Point p: allMoves) {
-			board[p.x][p.y] = count;
+			board[row][col] = count;
 			if(move(p.x, p.y, count+1) == true) {
 				return true;
 			}
-			board[p.x][p.y] = -1; 
+			board[row][col] = -1; 
 		}
 		return false;
 	}
@@ -138,13 +140,10 @@ public class KnightTour {
 	}
 	
 	public static void main(String[] args) {
-		long startTime = System.currentTimeMillis();
 		int boardsize = 8;
 		
 		KnightTour knight = new KnightTour(boardsize);
 		knight.setInitialPos(0,  0);
 		knight.solve();
-		long endTime = System.currentTimeMillis();
-		System.out.print((endTime - startTime));
 	}
 }
