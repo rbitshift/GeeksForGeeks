@@ -7,11 +7,11 @@ import java.util.Scanner;
 /**
  *
  Input:
- 4
- 0 -1 -1 -1
- 0  0 -1  0
--1  0 -1 -1
- 0  0  0  0
+4
+0 -1 -1 -1
+0 0 -1 0
+-1 0 -1 -1
+0 0 0 0
 
 Output:
  1 -1 -1 -1
@@ -47,17 +47,19 @@ public class RatInAMaze {
 	
 	private boolean move(int row, int col) {
 		if(row == mazesize-1 && col == mazesize-1) {
+			maze[row][col] = 1;
+			
 			printRatTrace();
 			return true;
 		}
 		
 		List<Point> allMoves = getAllMoves(row, col);
 		for(Point p: allMoves) {
-			maze[p.x][p.y] = 1;
+			maze[row][col] = 1;
 			if(move(p.x, p.y) == true) {
 				return true;
 			}
-			maze[p.x][p.y] = 0;
+			maze[row][col] = 0;
 		}
 		return false;
 	}
