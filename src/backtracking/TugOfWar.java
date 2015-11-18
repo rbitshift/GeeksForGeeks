@@ -17,6 +17,10 @@ public class TugOfWar {
 	
 	public void solve() {
 		search(0);
+		printSolution();
+	}
+	
+	private void printSolution() {
 		StringBuilder sbOne = new StringBuilder();
 		StringBuilder sbTwo = new StringBuilder();
 		for(int i = 0; i < input.length; i++) {
@@ -31,7 +35,7 @@ public class TugOfWar {
 		System.out.println("Set 2: " + sbTwo.toString());
 	}
 	
-	public boolean search(int pos) {
+	private boolean search(int pos) {
 		if(count == (input.length/2)) {
 			int diff = getDiff();
 			if(diff < minDiff) {
