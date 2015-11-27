@@ -5,10 +5,10 @@ package dp;
  * Rn = Max(Pi + Rn-i) for 1 <= i <= n
  */
 
-public class RodCutting {
+public class RodCuttingRecursive {
 	private int[] cost;
 	
-	public RodCutting(int[] input) {
+	public RodCuttingRecursive(int[] input) {
 		this.cost = input;
 	}
 	
@@ -31,7 +31,7 @@ public class RodCutting {
 	public static void main(String[] args) {
 		int[] a = {1, 5, 8, 9, 10, 17, 17, 20};
 		int num = 8;
-		RodCutting puzzle = new RodCutting(a);
+		RodCuttingRecursive puzzle = new RodCuttingRecursive(a);
 		puzzle.solve(num);
 	}
 }
