@@ -5,7 +5,7 @@ public class LongestIncreasingSubsequence {
 	public static void solve(int[] a) {
 		int[] c = new int[a.length];
 		
-		int max = 0;
+		int max = 0, maxindex = -1;
 		for(int i = 0; i < a.length; i++) {
 			c[i] = 1;
 			for(int j = 0; j < i; j++) {
@@ -16,9 +16,20 @@ public class LongestIncreasingSubsequence {
 			
 			if(max < c[i]) {
 				max = c[i];
+				maxindex = i;
+			}
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		sb.insert(0,  a[maxindex] + " ");
+		for(int i = maxindex; i >= 0; i--) {
+			if(a[i] < a[maxindex] && c[i] == c[maxindex] - 1) {
+				sb.insert(0, a[i] + " ");
+				maxindex = i;
 			}
 		}
 		System.out.println(max);
+		System.out.println(sb.toString());
 	}
 	
 	public static void main(String[] args) {
