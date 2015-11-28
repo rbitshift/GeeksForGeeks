@@ -1,11 +1,11 @@
 package dp;
 
-public class RodCuttingOptimized {
+public class RodCutting {
 	private int[] cost;
 	private int[] store;
 	private int[] sol;
 	
-	public RodCuttingOptimized(int[] input) {
+	public RodCutting(int[] input) {
 		this.cost = input;
 		this.store = new int[cost.length+1];
 		this.sol = new int[cost.length+1];
@@ -49,7 +49,7 @@ public class RodCuttingOptimized {
 		int[] a = {1, 5, 8, 9, 10, 17, 17, 20};
 		int num = 8;
 		
-		RodCuttingOptimized puzzle = new RodCuttingOptimized(a);
+		RodCutting puzzle = new RodCutting(a);
 		puzzle.solve(num);
 	}
 }
