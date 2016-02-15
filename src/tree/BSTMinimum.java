@@ -13,7 +13,7 @@ public class BSTMinimum<Item extends Comparable<Item>> {
 		}
 	};
 	
-	public void add(Item item) {
+	public void addUsingIteration(Item item) {
 		if(root == null) {
 			root = new Node(item);
 		} else {
@@ -37,6 +37,26 @@ public class BSTMinimum<Item extends Comparable<Item>> {
 		}
 	}
 	
+	public void addUsingRecursion(Item item) {
+		Node node = recursiveAddHelper(root, item);
+		if(root == null) {
+			root = node;
+		}
+	}
+	
+	private Node recursiveAddHelper(Node node, Item item) {
+		if(node == null) {
+			node = new Node(item);
+		} else {
+			if(item.compareTo(node.item) < 0) {
+				node.left = recursiveAddHelper(node.left, item);
+			} else {
+				node.right = recursiveAddHelper(node.right, item);
+			}
+		}
+		return node;
+	}
+	
 	public Item getMinimumElement() {
 		Node current = root;
 		if(current == null) {
@@ -53,7 +73,8 @@ public class BSTMinimum<Item extends Comparable<Item>> {
 		Integer[] input = {20, 8, 22, 4, 12, 10, 14};
 		BSTMinimum<Integer> bst = new BSTMinimum<Integer>();
 		for(Integer a: input) {
-			bst.add(a);
+			bst.addUsingIteration(a);
+//			bst.addUsingRecursion(a);
 		}
 		System.out.println(bst.getMinimumElement());
 	}
