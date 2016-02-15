@@ -14,12 +14,12 @@ public class BSTChecker {
 	}
 	
 	public boolean isBST() {
-		return bstChecker(tree.getRoot());
+		return isBST(tree.getRoot());
 	}
 	
-	private boolean bstChecker(TNode node) {
+	private boolean isBST(TNode node) {
 		if(node != null) {
-			if(!bstChecker(node.left())) {
+			if(!isBST(node.left())) {
 				return false;
 			}
 			
@@ -28,7 +28,7 @@ public class BSTChecker {
 			}
 			
 			prev = node;
-			bstChecker(node.right());
+			isBST(node.right());
 		}
 		return true;
 	}
