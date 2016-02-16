@@ -9,23 +9,23 @@ public class CBSTArray<Item extends Comparable<Item>> {
 		this.size = items.length;
 	}
 	
-	public String inorderTraversal() {
+	public String inorder() {
 		if(items.length == 0) {
 			return "Complete Binary Tree is empty";
 		} else {
 			StringBuilder sb = new StringBuilder();
-			inorderTraversalHelper(1, sb);
+			inorder(1, sb);
 			return sb.toString().trim();
 		}
 	}
 	
-	private void inorderTraversalHelper(int index, StringBuilder sb) {
+	private void inorder(int index, StringBuilder sb) {
 		if(index > size) {
 			return;
 		} else {
-			inorderTraversalHelper(left(index), sb);
+			inorder(left(index), sb);
 			sb.append(items[index-1] + " ");
-			inorderTraversalHelper(right(index), sb);
+			inorder(right(index), sb);
 		}
 	}
 	
@@ -44,11 +44,11 @@ public class CBSTArray<Item extends Comparable<Item>> {
 	public static void main(String[] args) {
 		Integer[] input1 = {4, 2, 5, 1, 3};
 		CBSTArray<Integer> tree1 = new CBSTArray<Integer>(input1);
-		assert tree1.inorderTraversal().equals("1 2 3 4 5");
+		assert tree1.inorder().equals("1 2 3 4 5");
 		
 		Integer[] input2 = {4, 2, 6, 1, 3, 5, 7};
 		CBSTArray<Integer> tree2 = new CBSTArray<Integer>(input2);
-		assert tree2.inorderTraversal().equals("1 2 3 4 5 6 7");
+		assert tree2.inorder().equals("1 2 3 4 5 6 7");
 		
 		System.out.println("ALL TESTS COMPLETED");
 	}

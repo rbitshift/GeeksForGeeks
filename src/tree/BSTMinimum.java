@@ -9,55 +9,38 @@ public class BSTMinimum<Item extends Comparable<Item>> {
 		Item item; Node left; Node right;
 		
 		Node(Item item) {
-			this.item = item; this.left = null; this.right = null;
+			this.item = item; 
+			this.left = this.right = null;
 		}
 	};
 	
-	public void addUsingIteration(Item item) {
-		if(root == null) {
-			root = new Node(item);
-		} else {
-			Node current = root; Node previous = null;
-			while(current != null) {
-				previous = current;
-				if(item.compareTo(current.item) < 0) {
-					current = current.left;
-				} else {
-					current = current.right;
-				}
-			}
-			if(previous == null) {
-				previous = root;
-			}
-			if(item.compareTo(previous.item) < 0) {
-				previous.left = new Node(item);
-			} else {
-				previous.right = new Node(item);
-			}
+	public BSTMinimum(Item[] items) {
+		for(Item i: items) {
+			add(i);
 		}
 	}
 	
-	public void addUsingRecursion(Item item) {
-		Node node = recursiveAddHelper(root, item);
+	public void add(Item item) {
+		Node node = add(root, item);
 		if(root == null) {
 			root = node;
 		}
 	}
 	
-	private Node recursiveAddHelper(Node node, Item item) {
+	private Node add(Node node, Item item) {
 		if(node == null) {
-			node = new Node(item);
+			return new Node(item);
 		} else {
 			if(item.compareTo(node.item) < 0) {
-				node.left = recursiveAddHelper(node.left, item);
+				node.left = add(node.left, item);
 			} else {
-				node.right = recursiveAddHelper(node.right, item);
+				node.right = add(node.right, item);
 			}
+			return node;
 		}
-		return node;
 	}
 	
-	public Item getMinimumElement() {
+	public Item getMin() {
 		Node current = root;
 		if(current == null) {
 			throw new NoSuchElementException("BST is empty");
@@ -71,11 +54,9 @@ public class BSTMinimum<Item extends Comparable<Item>> {
 	
 	public static void main(String[] args) {
 		Integer[] input = {20, 8, 22, 4, 12, 10, 14};
-		BSTMinimum<Integer> bst = new BSTMinimum<Integer>();
-		for(Integer a: input) {
-			bst.addUsingIteration(a);
-//			bst.addUsingRecursion(a);
-		}
-		System.out.println(bst.getMinimumElement());
+		BSTMinimum<Integer> bst = new BSTMinimum<Integer>(input);
+		assert bst.getMin().compareTo(4) == 0;
+		
+		System.out.println("ALL TESTS COMPLETED");
 	}
 }
