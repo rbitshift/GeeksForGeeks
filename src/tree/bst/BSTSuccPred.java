@@ -1,6 +1,6 @@
 package tree.bst;
 
-public class BSTOrder<Item extends Comparable<Item>> {
+public class BSTSuccPred<Item extends Comparable<Item>> {
 	
 	public static void main(String[] args) {
 		Integer[] input1 = {1, 2, 3, 4, 5, 6};
