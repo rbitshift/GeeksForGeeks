@@ -1,4 +1,4 @@
-package tree;
+package tree.bst;
 
 public class BSTOrder<Item extends Comparable<Item>> {
 	

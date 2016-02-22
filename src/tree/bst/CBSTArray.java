@@ -1,4 +1,4 @@
-package tree;
+package tree.bst;
 
 public class CBSTArray<Item extends Comparable<Item>> {
 	private Item[] items;

@@ -1,4 +1,9 @@
-package tree;
+package tree.bst;
+/*
+ * Solution:
+ * http://www.geeksforgeeks.org/floor-and-ceil-from-a-bst/
+ * 
+ */
 
 public class BSTFloorCeiling<Item extends Comparable<Item>> {
 	private Node root;
