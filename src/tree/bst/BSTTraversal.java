@@ -22,6 +22,8 @@ public class BSTTraversal<Item extends Comparable<Item>> {
 		
 		bst.postorder();
 		bst.postorderItr();
+		
+		bst.levelorder();
 	}
 	
 	class Node {
