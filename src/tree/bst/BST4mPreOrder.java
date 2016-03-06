@@ -1,5 +1,10 @@
 package tree.bst;
 
+/*
+ * http://www.geeksforgeeks.org/construct-bst-from-given-preorder-traversal-set-2/
+ * http://www.geeksforgeeks.org/construct-bst-from-given-preorder-traversa/
+ */
+
 import java.util.Stack;
 import java.util.Vector;
 
