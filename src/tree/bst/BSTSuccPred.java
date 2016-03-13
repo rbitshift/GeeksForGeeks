@@ -8,15 +8,19 @@ public class BSTSuccPred<Item extends Comparable<Item>> {
 		assert bst1.successor(3).compareTo(4) == 0;
 		assert bst1.successor(1).compareTo(2) == 0;
 		assert bst1.successor(6) == null;
-
+		
 		assert bst1.predecessor(3).compareTo(2) == 0;
 		
 		Integer[] input2 = {20, 8, 22, 4, 12, 10, 14};
 		BST<Integer> bst2 = new BST<Integer>(input2);
-		assert bst2.successor(12).compareTo(14) == 0;
+		assert bst2.successor(14).compareTo(20) == 0;
 		
 		assert bst2.predecessor(14).compareTo(12) == 0;
 		
+		Integer[] input3 = {6, 5, 4, 3, 2, 1};
+		BST<Integer> bst3 = new BST<Integer>(input3);
+		assert bst3.predecessor(2).compareTo(1) == 0;
+		assert bst3.successor(1).compareTo(2) == 0;
 		System.out.println("ALL TESTS COMPLETED");
 	}
 }
@@ -69,14 +73,13 @@ class BST<Item extends Comparable<Item>> {
 		}
 		
 		int cmp = item.compareTo(node.item);
-		if(cmp < 0) { 
+		if(cmp <= 0) { 
 			return predecessor(node.left, item); 
-		} else if (cmp > 0) {
+		} else {
 			Node temp = predecessor(node.right, item);
 			if(temp == null) { return node; } 
 			else {return temp; }
 		}
-		return null;
 	}
 	
 	public Item successor(Item item) {
@@ -86,10 +89,10 @@ class BST<Item extends Comparable<Item>> {
 	}
 	
 	private Node successor(Node node, Item item) {
+		
 		if(node == null) {
 			return null;
 		}
-		
 		int cmp = item.compareTo(node.item);
 		if(cmp < 0) {
 			Node temp = successor(node.left, item);
