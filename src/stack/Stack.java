@@ -37,6 +37,10 @@ public class Stack<Item extends Comparable<Item>> {
 	}
 	
 	public Item pop() {
+		if(isEmpty()) {
+			return null;
+		}
+		
 		Node oldTop = top;
 		top = top.next;
 		oldTop.next = null;
