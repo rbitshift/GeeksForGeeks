@@ -1,6 +1,6 @@
 package stack;
 
-public class Stack<Item extends Comparable<Item>> {
+public class Stack<Item> {
 	private Node top;
 	private int size;
 	

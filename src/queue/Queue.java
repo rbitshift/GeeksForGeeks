@@ -20,6 +20,14 @@ public class Queue<Item> implements Iterable<Item> {
 		return N;
 	}
 	
+	public Item first() {
+		if(isEmpty()) {
+			return null;
+		} else {
+			return first.item;
+		}
+	}
+	
 	public void enque(Item item) {
 		Node oldNode = last;
 		last = new Node();
