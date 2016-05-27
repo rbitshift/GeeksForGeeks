@@ -70,7 +70,7 @@ public class TreeTraversal<Item extends Comparable<Item>> {
 		System.out.println();
 	}
 	
-	public void printSpiralLevelOrder() {
+	public void printSpiralLevelOrderUsingTwoStacks() {
 		if(root == null) {
 			System.out.println("Tree is empty");
 			return;
@@ -107,11 +107,50 @@ public class TreeTraversal<Item extends Comparable<Item>> {
 		System.out.println();
 	}
 	
+	public void printSpiralLevelOrderUsingDeque() {
+		if(root == null) {
+			System.out.println("Tree is empty");
+			return;
+		}
+		
+		Deque<Node> dek = new Deque<Node>();
+		dek.addFirst(root);
+		
+		int curLevelCount = dek.size();
+		boolean leftToRight = true;
+		
+		while(!dek.isEmpty()) {
+			if(leftToRight) {
+				Node node = dek.removeFirst();
+				if(node != null) {
+					System.out.print(node.item + " ");
+					dek.addLast(node.left);
+					dek.addLast(node.right);
+				}
+			} else {
+				Node node = dek.removeLast();
+				if(node != null) {
+					System.out.print(node.item + " ");
+					dek.addFirst(node.right);
+					dek.addFirst(node.left);
+				}
+			}
+			curLevelCount--;
+			
+			if(curLevelCount == 0) {
+				curLevelCount = dek.size();
+				leftToRight = !leftToRight;
+				System.out.println();
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		Integer[] input = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 		TreeTraversal<Integer> tree = new TreeTraversal<Integer>();
 		tree.buildCompleteBinaryTree(input);
 		tree.printLevelOrder();
-		tree.printSpiralLevelOrder();
+		tree.printSpiralLevelOrderUsingTwoStacks();
+		tree.printSpiralLevelOrderUsingDeque();
 	}
 }

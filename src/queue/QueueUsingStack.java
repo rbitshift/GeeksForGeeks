@@ -1,4 +1,6 @@
-package stack;
+package queue;
+
+import stack.Stack;
 
 public class QueueUsingStack<Item extends Comparable<Item>> {
 	private Stack<Item> stack1;
