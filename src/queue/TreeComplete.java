@@ -11,7 +11,7 @@ public class TreeComplete<Item extends Comparable<Item>> {
 		public Node(Item item) {
 			this.item = item;
 			this.left = null;
-			this.right = null;
+			this.right = null; 
 		}
 	}
 	
@@ -123,7 +123,6 @@ public class TreeComplete<Item extends Comparable<Item>> {
 		}
 		return true;
 	}
-	
 	
 	public static void main(String[] args) {
 		Integer[] input1 = {1, 2, 3, 4, 5, 6, 7};
