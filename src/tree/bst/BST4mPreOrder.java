@@ -22,7 +22,11 @@ public class BST4mPreOrder<Item extends Comparable<Item>> {
 		}
 	}
 	
-	public void create(Item[] array) {
+	public BST4mPreOrder() {
+		
+	}
+	
+	public BST4mPreOrder(Item[] array) {
 		if(array.length <= 0) {
 			System.out.println("Input array is empty");
 			return;
@@ -52,35 +56,6 @@ public class BST4mPreOrder<Item extends Comparable<Item>> {
 			}
 			return node;
 		}
-	}
-	
-	public void inorder() {
-		inorder(root);
-		System.out.println();
-	}
-	
-	private void inorder(Node node) {
-		if(node == null) {
-			return;
-		} else {
-			inorder(node.left);
-			System.out.print(node.item + " ");
-			inorder(node.right);
-		}
-	}
-	
-	public void levelorder() {
-		Vector<Node> queue = new Vector<Node>();
-		queue.add(root);
-		while(!queue.isEmpty()) {
-			Node frontNode = queue.remove(0);
-			if(frontNode != null) {
-				System.out.print(frontNode.item + " ");
-				queue.add(frontNode.left);
-				queue.add(frontNode.right);
-			}
-		}
-		System.out.println();
 	}
 	
 	public void createUsingIteration(Item[] preordItems) {
@@ -121,11 +96,70 @@ public class BST4mPreOrder<Item extends Comparable<Item>> {
 		}
 	}
 	
+	class GlobalInteger {
+		int index = 0;
+	}
+	
+	public void createUsingRecursion(Item[] preordItems) {
+		GlobalInteger elm = new GlobalInteger();
+		root = createUsingRecursion(elm, null, null, preordItems);
+	}
+	
+	private Node createUsingRecursion(GlobalInteger elm, Item min, Item max, Item[] items) {
+		if(elm.index >= items.length) { return null; }
+		if(min != null && min.compareTo(items[elm.index]) > 0) { return null; }
+		if(max != null && max.compareTo(items[elm.index]) < 0) { return null; }
+		
+		Node node = new Node(items[elm.index]);
+		
+		elm.index += 1;
+		node.left = createUsingRecursion(elm, min, node.item, items);
+		node.right = createUsingRecursion(elm, node.item, max, items);
+		return node;
+	}
+	
+	public void inorder() {
+		inorder(root);
+		System.out.println();
+	}
+	
+	private void inorder(Node node) {
+		if(node == null) {
+			return;
+		} else {
+			inorder(node.left);
+			System.out.print(node.item + " ");
+			inorder(node.right);
+		}
+	}
+	
+	public void levelorder() {
+		Vector<Node> queue = new Vector<Node>();
+		queue.add(root);
+		while(!queue.isEmpty()) {
+			Node frontNode = queue.remove(0);
+			if(frontNode != null) {
+				System.out.print(frontNode.item + " ");
+				queue.add(frontNode.left);
+				queue.add(frontNode.right);
+			}
+		}
+		System.out.println();
+	}
+	
 	public static void main(String[] args) {
 		Integer[] items =  {10, 5, 1, 7, 40, 50};
-		BST4mPreOrder<Integer> bst = new BST4mPreOrder<Integer>();
-		bst.createUsingIteration(items);
-		bst.inorder();
-		bst.levelorder();
+		
+		BST4mPreOrder<Integer> bst1 = new BST4mPreOrder<Integer>();
+		bst1.createUsingIteration(items);
+		bst1.inorder();
+		bst1.levelorder();
+		
+		System.out.println();
+		
+		BST4mPreOrder<Integer> bst2 = new BST4mPreOrder<Integer>();
+		bst2.createUsingRecursion(items);
+		bst2.inorder();
+		bst2.levelorder();
 	}
 }
