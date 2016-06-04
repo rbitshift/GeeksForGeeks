@@ -1,4 +1,4 @@
-package tree.bst;
+package tree;
 
 import queue.Deque;
 import stack.Stack;
@@ -120,7 +120,6 @@ public class SpiralOrder<Item extends Comparable<Item>> {
 			}
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 		Integer[] input = {5, 3, 7, 1, 9};
