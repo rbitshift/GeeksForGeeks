@@ -1,31 +1,6 @@
 package tree.bst;
 
 public class BSTSuccPred<Item extends Comparable<Item>> {
-	
-	public static void main(String[] args) {
-		Integer[] input1 = {1, 2, 3, 4, 5, 6};
-		BST<Integer> bst1 = new BST<Integer>(input1);
-		assert bst1.successor(3).compareTo(4) == 0;
-		assert bst1.successor(1).compareTo(2) == 0;
-		assert bst1.successor(6) == null;
-		
-		assert bst1.predecessor(3).compareTo(2) == 0;
-		
-		Integer[] input2 = {20, 8, 22, 4, 12, 10, 14};
-		BST<Integer> bst2 = new BST<Integer>(input2);
-		assert bst2.successor(14).compareTo(20) == 0;
-		
-		assert bst2.predecessor(14).compareTo(12) == 0;
-		
-		Integer[] input3 = {6, 5, 4, 3, 2, 1};
-		BST<Integer> bst3 = new BST<Integer>(input3);
-		assert bst3.predecessor(2).compareTo(1) == 0;
-		assert bst3.successor(1).compareTo(2) == 0;
-		System.out.println("ALL TESTS COMPLETED");
-	}
-}
-
-class BST<Item extends Comparable<Item>> {
 	private Node root;
 	
 	class Node {
@@ -39,7 +14,7 @@ class BST<Item extends Comparable<Item>> {
 		}
 	}
 	
-	public BST(Item[] array) {
+	public BSTSuccPred(Item[] array) {
 		for(Item i: array) { add(i); }
 	}
 	
@@ -115,5 +90,27 @@ class BST<Item extends Comparable<Item>> {
 			System.out.print(node.item + " ");
 			inorderTraversal(node.right);
 		}
+	}
+	
+	public static void main(String[] args) {
+		Integer[] input1 = {1, 2, 3, 4, 5, 6};
+		BSTSuccPred<Integer> bst1 = new BSTSuccPred<Integer>(input1);
+		assert bst1.successor(3).compareTo(4) == 0;
+		assert bst1.successor(1).compareTo(2) == 0;
+		assert bst1.successor(6) == null;
+		
+		assert bst1.predecessor(3).compareTo(2) == 0;
+		
+		Integer[] input2 = {20, 8, 22, 4, 12, 10, 14};
+		BSTSuccPred<Integer> bst2 = new BSTSuccPred<Integer>(input2);
+		assert bst2.successor(14).compareTo(20) == 0;
+		
+		assert bst2.predecessor(14).compareTo(12) == 0;
+		
+		Integer[] input3 = {6, 5, 4, 3, 2, 1};
+		BSTSuccPred<Integer> bst3 = new BSTSuccPred<Integer>(input3);
+		assert bst3.predecessor(2).compareTo(1) == 0;
+		assert bst3.successor(1).compareTo(2) == 0;
+		System.out.println("ALL TESTS COMPLETED");
 	}
 }
