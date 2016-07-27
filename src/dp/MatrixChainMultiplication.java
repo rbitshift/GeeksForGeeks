@@ -45,20 +45,15 @@ public class MatrixChainMultiplication {
 	
 	private static int solve_memoized_helper(int[] p, int i, int j) {
 		if(m[i][j] == -1) {
-			if(i == j) {
-				m[i][j] = 0;
-			} else {
-				int min = Integer.MAX_VALUE;
-				for(int k = i; k < j; k++) {
-					int q = solve_recursive_helper(p, i, k) + 
-							solve_recursive_helper(p, k+1, j) + 
-							p[i-1] * p[k] * p[j];
-					min = Math.min(min,  q);
-					m[i][j] = min;
-				}
+			int min = Integer.MAX_VALUE;
+			for(int k = i; k < j; k++) {
+				int q = solve_recursive_helper(p, i, k) + 
+						solve_recursive_helper(p, k+1, j) + 
+						p[i-1] * p[k] * p[j];
+				min = Math.min(min,  q);
+				m[i][j] = min;
 			}
 		}
-		
 		return m[i][j];
 	}
 
