@@ -13,15 +13,15 @@ public class WordBreak {
 	}
 	
 	private static boolean solve_recursive(String word) {
-		int size = word.length() - 1;
+		int size = word.length();
 		if(size == 0) {
 			return true;
 		}
 		
 		
-		for(int i = 1; i <= size; i++) {
+		for(int i = 0; i <= size; i++) {
 			if(set.contains(word.substring(0, i)) && 
-					solve_recursive(word.substring(i, size-i))) {
+					solve_recursive(word.substring(i, size))) {
 				return true;
 			}
 		}
